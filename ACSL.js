@@ -4,6 +4,7 @@ var input; //makes sure input is a global variable
 
 submit_button.onclick = function() {
 	input = readCommand();
+	window.alert(input);
 	if(input.search("E")!=-1) {
 
 	}
