@@ -46,7 +46,7 @@ function process(input_param) {
 		console.log(digits);
 		console.log(space);
 		output = input_param[1];
-		for(var i;i<=space-digits;i++) {
+		for(var i=1;i<=(space-digits);i++) {
 			output = "*"+output;
 			console.log(output);
 		}
