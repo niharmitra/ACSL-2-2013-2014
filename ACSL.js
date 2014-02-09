@@ -4,5 +4,5 @@ var input;
 
 submit_button.onclick = function() {
 	input = input_box.value;
-	
+	window.alert(input);
 }
