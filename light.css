@@ -1,31 +1,12 @@
 @charset "UTF-8";
 
-/*
-@font-face {
-	font-family: 'Light';
-	src: url("/fonts/HelveticaNeue-Light.ttf") format("truetype");
-}
-
-@font-face {
-	font-family: 'Medium';
-	src: url("/fonts/HelveticaNeue.ttf") format("truetype");
-}
-
-@font-face {
-	font-family: 'UltraLight';
-	src: url("/fonts/HelveticaNeue-UltraLight.ttf") format("truetype");
-}
-*/
-
 html {
-	height: 100%;
 	font-family: 'Light';
 	margin-top: 1%;
 	margin-left: 3%;
 }
 
 body {
-	height: 100%;
 	font-size: 20px;
 }
 
@@ -64,35 +45,20 @@ input {
 	font-size: 20px;
 }
 
-alert {
-	titleStyleName: "alertTitle";
-	messageStyleName: "messageStyle";
-	buttonStyleName: "buttonStyle:;
+dialog {
+	title-style-name: "alertTitle";
+	message-style-name: "messageStyle";
+	button-style-name: "buttonStyle:";
 }
 
 .alertTitle {
-	font-size: 15px;
 	color: #0090FF;
 }
 
 .messageStyle {
-	
+	color: #888888;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.buttonStyle {
+	color: #0090FF;
+}
