@@ -93,12 +93,13 @@ function comma(output_param) {
 	var num = Math.floor(output_param.length/3);
 	output_param = output_param.toString();
 	var output_array = output_param.split("");
-	for(var i=output_param.length-1; i>=0; i--) {
-		//makes sure i%3 is whole number and isn't the first one
-		if((Math.floor(i%3)==i%3)&&(i%3!=Math.floor(output_param.length%3))) {
-			output_array.splice(i, 0, ",");
+	for(var i=output_param.length-1; i>0; i--) {
+		//makes sure i%3 is 0 and isn't the first one
+		if(i%3==0) {
+			output_array.splice(-i, 0, ",");
 		}
 	}
+	console.log(output_array);
 	output = convertArray(output_array);
 	return output;
 }
