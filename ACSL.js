@@ -66,7 +66,7 @@ function process(input_param) {
 	else {
 		//dec_space is amount of space after decimal point
 		var dec_space = string[1].match(/&/g).length;
-		var dec_digits = input_param[1].split(".");
+		var dec_digits = input_param[1].toString().split(".");
 		dec_digits = dec_digits[1].length;
 	}
 	output = input_param[1];
@@ -88,22 +88,26 @@ function comma(output_param) {
 	var num = Math.floor(output_param.length/3);
 	var output_array = output_param.toString().split("");
 	console.log(output_array);
-	for(var i=1; i<num; i++) {
-		if(i==1){
-			var index = -3;
-		}
-		else {
-			var index = output_param.toString().indexOf(",");
-		}
-		output_array.splice(index, 0, ",");
-		//= output_param.toString().slice(0,index-1)+","+output_param.toString().slice(index);
+	for(var i=output_array.length-1; i>=0; i--) {
+
 	}
-	output = "";
-	console.log(output_array);
-	for(var j=0; j<=output_array.length;j++) {
-		output += output_array[j];
-	}
-	return output;
+	// for(var i=1; i<num; i++) {
+	// 	if(i==1){
+	// 		var index = -3;
+	// 	}
+	// 	else {
+	// 		var index = output_array.toString().indexOf(",") - 4;
+	// 		console.log(output_array.toString().indexOf(","));
+	// 	}
+	// 	output_array.splice(index, 0, ",");
+	// 	//= output_param.toString().slice(0,index-1)+","+output_param.toString().slice(index);
+	// }
+	// output = "";
+	// for(var j=0; j<output_array.length;j++) {
+	// 	output += output_array[j];
+	// }
+	// console.log(output);
+	// return output;
 }
 
 function exponentialForm(input_param) {
