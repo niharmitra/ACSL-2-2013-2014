@@ -12,18 +12,22 @@ submit_button.onclick = function() {
 		//removes the *$ once processed
 		input[0] = input[0].slice(2);
 		output = process(input);
-		output_array = new Array();
-		output_array[0] = output.substring(0,output.lastIndexOf("*"));
-		output_array[1] = output.slice(output.lastIndexOf("*"));
+		var output_array = new Array();
+		output_array[0] = output.slice(0, output.lastIndexOf("*")+1);
+		output_array[1] = output.slice(output.lastIndexOf("*")+1);
 		console.log(output_array);
-		output = output_array[0] + "$" + output_array[1];
+		output = output_array[0]+"$"+output_array[1];
 	}
 	else if(input[0].indexOf("$") != -1)  {
 		input[0] = input[0].slice(1);
 		output = process(input);
+		output = output.slice(output.lastIndexOf("*")+1);
 		output = "$"+output;
 	}
 	else if(input[0].search(",") != -1) {
+		input_temp = input[0].split("");
+		input_temp.splice(input[0].indexOf(","),1);
+		input[0] = convertArray(input_temp);
 		output = comma(process(input));
 	}
 	else {
@@ -70,15 +74,16 @@ function process(input_param) {
 		dec_digits = dec_digits[1].length;
 	}
 	output = input_param[1];
+
 	//does rounding when needed
-	if(dec_space<dec_digits) {
-		var round_factor = Math.pow(10, dec_digits);
+	if(dec_space<=dec_digits) {
+		var round_factor = Math.pow(10, dec_space);
 		output = Math.round(input_param[1]*round_factor)/round_factor;
 	}
 	for(var i=1;i<=(space-digits+dec_digits);i++) {
 		output = "*"+output;
 	}
-	for(var j=1; j<=dec_space-dec_digits;j++) {
+	for(var j=1; j<=(dec_space-dec_digits);j++) {
 		output += "0";
 	}
 	return output.toString();
@@ -86,28 +91,16 @@ function process(input_param) {
 
 function comma(output_param) {
 	var num = Math.floor(output_param.length/3);
-	var output_array = output_param.toString().split("");
-	console.log(output_array);
-	for(var i=output_array.length-1; i>=0; i--) {
-
+	output_param = output_param.toString();
+	var output_array = output_param.split("");
+	for(var i=output_param.length-1; i>=0; i--) {
+		//makes sure i%3 is whole number and isn't the first one
+		if((Math.floor(i%3)==i%3)&&(i%3!=Math.floor(output_param.length%3))) {
+			output_array.splice(i, 0, ",");
+		}
 	}
-	// for(var i=1; i<num; i++) {
-	// 	if(i==1){
-	// 		var index = -3;
-	// 	}
-	// 	else {
-	// 		var index = output_array.toString().indexOf(",") - 4;
-	// 		console.log(output_array.toString().indexOf(","));
-	// 	}
-	// 	output_array.splice(index, 0, ",");
-	// 	//= output_param.toString().slice(0,index-1)+","+output_param.toString().slice(index);
-	// }
-	// output = "";
-	// for(var j=0; j<output_array.length;j++) {
-	// 	output += output_array[j];
-	// }
-	// console.log(output);
-	// return output;
+	output = convertArray(output_array);
+	return output;
 }
 
 function exponentialForm(input_param) {
@@ -122,4 +115,12 @@ function exponentialForm(input_param) {
 function displayOutput(output_param) {
 	document.body.appendChild(document.createElement("br"));
 	document.body.appendChild(document.createTextNode(output_param));
+}
+
+function convertArray(array_param) {
+	var output_param="";
+	for(var j=0; j<array_param.length;j++) {
+		output_param += array_param[j];
+	}
+	return output_param;
 }
