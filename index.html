@@ -20,12 +20,61 @@ Senior Division
 	<section>
 		Instructions:
 	</section>
+	This program takes in commands of the form string, value. <br />
+	The string is many &'s with some special characters within. The value is a number on which the command needs to be executed. For example, a "string" could be &&&& and a "value" could be 12345 <br />
 		<ul>
 			<li>Please enter the input in this text box.</li>
-			<li>Enter it one at a time as: string, value.</li>
-			<li>Make sure there is a space after the comma that separates the string from the value</li>
+			<li>Enter it one at a time as: "string", "value".</li>
+			<li>Make sure there is a space after the comma that separates the "string" from the "value"</li>
 			<li>Hit the submit button to see the output get printed out.</li>
 		</ul>
+	<section>
+	Commands: <unimportant>(Some of these can be used together)</unimportant>
+	</section>
+	<table>
+		<tr><td>
+			A string of &&&&'s defines a field of that number of characters. If there are more &'s than digits in the value, *'s fill the rest (right justified)
+		</td>
+		<td>
+			Example: &&&&, 12 returns **12
+		</td></tr>
+
+		<tr>
+		<td>
+			A comma in the "string" will insert commas before every 3rd character in the "value".
+		</td>
+		<td>
+			Example: &&&,&, 1234 retunrs 1,234
+		</td></tr>
+
+		<tr>
+		<td>
+			A decimal point in the "string" will determine how many decimal points will print. The value will be rounded or appended with 0's as appropriate.
+		</td>
+		<td>
+			Example: &&&&.&&&, 34.56 returns *34.560 (an example of stacked commands). Another example is &&&.&&, 123.456 returns 123.46.
+		</td>
+		</tr>
+
+		<tr>
+		<td>
+			An E in the "string" will return the value in exponential form, with the digits adjusted as they would be for a decimal. Cannot stack with other commands.
+		</td>
+		<td>
+			Example: &&&&E, 1234 returns 1.234E3
+		</td>
+		</tr>
+
+		<tr>
+		<td>
+			A $ will put a dollar sign in front of the numbers in the output. A *$ will append *'s in front of this dollar sign if needed.
+		</td>
+		<td>
+			Example: $&&&&.&&, 123.45 returns $123.45. (Note lack of *'s) <br />
+			Example: *$&&&&.&&, 123.45 returns *$123.45.
+		</td>
+		</tr>
+	</table>
 		<input type="text" id="input_box" />
 		<button id="submit_button">Submit Input!</button>
 	<script type="text/javascript" src="ACSL.js"></script>
